@@ -23,7 +23,7 @@ public static void main(String[] args) throws Exception {
     int[] nge = solve(a);
     display(nge);
  }
-
+//solution 
  public static int[] solve(int[] arr){
    int[] nge = new int[arr.length];
    Stack<Integer> st = new Stack<>();
