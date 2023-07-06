@@ -27,7 +27,7 @@ public static void main(String[] args) throws Exception {
             }
             ops.pop(); //popping the (
         } else if(ch == '+' || ch == '-' || ch == '*' || ch == '/'){
-             while(ops.peek() != '(' && ops.size() > 0 && precedence(ch) <= precedence(ops.peek())){
+             while(ops.size() > 0 && ops.peek() != '(' && precedence(ch) <= precedence(ops.peek())){
                 process(ops, post, pre);
             }
             ops.push(ch); //pushing current operator
@@ -51,15 +51,15 @@ public static int precedence(char op){
     }
  }
  public static void process(Stack<Character> ops, Stack<String> post, Stack<String> pre){
-     char op = ops.pop();
-            String postv2 = post.pop();
-            String postv1 = post.pop();
-            String postv = postv1 + postv2 + op;
-            post.push(postv);
-                
-            String prev2 = pre.pop();
-            String prev1 = pre.pop();
-            String prev = op + prev1 + prev2;
-            pre.push(prev);
+       char op = ops.pop();
+        String postv2 = post.pop();
+        String postv1 = post.pop();
+        String postv = postv1 + postv2 + op;
+        post.push(postv);
+            
+        String prev2 = pre.pop();
+        String prev1 = pre.pop();
+        String prev = op + prev1 + prev2;
+        pre.push(prev);
  }
 }
