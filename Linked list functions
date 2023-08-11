@@ -155,7 +155,7 @@ public class Main {
       }
     }
 
-    private Node getNodeAt(int idx) { //for use in reverseDI
+    private Node getNodeAt(int idx) {
       Node temp = head;
       for (int i = 0; i < idx; i++) {
         temp = temp.next;
@@ -163,7 +163,7 @@ public class Main {
       return temp;
     }
 
-    public void reverseDI() { //DI = data iterative (changing only data property)
+    public void reverseDI() {
       int li = 0;
       int ri = size - 1;
       while(li < ri){
@@ -179,21 +179,50 @@ public class Main {
       }
     }
  
-    public void reversePI(){ //PI = pointer iterative(changing only pointer/next property)
-      // write your code here
+    public void reversePI(){
+      if(size <= 1){
+        return;
+      }
+
       Node prev = null;
       Node curr = head;
       while(curr != null){
-          Node next = curr.next; //points to original curr.next
-          curr.next = prev;
-          
-          prev = curr;
-          curr = next;
+        Node next = curr.next;
+        
+        curr.next = prev;
+        prev = curr;
+        curr = next;
       }
+
       Node temp = head;
       head = tail;
       tail = temp;
-      
+    }
+  
+    public int kthFromLast(int k){
+      Node slow = head;
+      Node fast = head;
+      for(int i = 0; i < k; i++){
+        fast = fast.next;
+      }
+
+      while(fast != tail){
+        slow = slow.next;
+        fast = fast.next;
+      }
+
+      return slow.data;
+    }
+ 
+    public int mid(){
+      // write your code here
+      Node slow = head;
+      Node fast = head;
+      while(fast.next != null && fast.next.next != null){
+          slow = slow.next;
+          fast = fast.next.next;
+      }
+      return slow.data;
     }
   }
 
@@ -244,6 +273,11 @@ public class Main {
         list.reverseDI();
       } else if(str.startsWith("reversePI")){
         list.reversePI();
+      } else if(str.startsWith("kthFromEnd")){
+        int idx = Integer.parseInt(str.split(" ")[1]);
+        System.out.println(list.kthFromLast(idx));
+      } else if(str.startsWith("mid")){
+        System.out.println(list.mid());
       }
       str = br.readLine();
     }
