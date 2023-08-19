@@ -69,7 +69,7 @@ public class Main {
 
   public static int height(Node node) {
     // write your code here
-    int ht = -1; //ht = -1 if height in terms of edges, 0 if in terms of nodes, as it gives height of 1 for first base case
+    int ht = -1; //ht = -1 if height in terms of edges, 0 if in terms of nodes, as it gives height of 1 for first base case/leaf
     for(Node child: node.children){
         int ch = height(child);
         ht = Math.max(ch, ht);
