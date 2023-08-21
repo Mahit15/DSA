@@ -128,7 +128,7 @@ public class Main {
     for(Node child: node.children){
         mirror(child);
     }
-    Collections.reverse(node.children);
+    Collections.reverse(node.children); //method of Collections class used to reverse the order of elements
   }
 
   public static void main(String[] args) throws Exception {
