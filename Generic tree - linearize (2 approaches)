@@ -144,7 +144,7 @@ public class Main {
   }
 
   public static void linearize(Node node){
-    // write your code here
+    // time complexity -> O(n^2)
     for(Node child: node.children){
         linearize(child);
     }
@@ -161,6 +161,21 @@ public class Main {
       }
       return node;
   }
+  public static Node linearize2(Node node){
+      //time complexity = O(n)
+      if(node.children.size() == 0){
+          return node;
+      }
+      
+      Node lt = linearize2(node.children.get(node.children.size() - 1)); // lt = last tail
+      while(node.children.size() > 1){
+          Node last = node.children.remove(node.children.size() - 1);
+          Node sl = node.children.get(node.children.size() - 1); // sl = second last
+          Node slt = linearize2(sl); // slt = second last tail
+          slt.children.add(last);
+      }
+      return lt;
+  }
 
   public static void main(String[] args) throws Exception {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -172,7 +187,7 @@ public class Main {
     }
 
     Node root = construct(arr);
-    linearize(root);
+    linearize2(root);
     display(root);
   }
 
