@@ -99,10 +99,10 @@ public class Main {
   }
 
   public static void levelOrderLinewise2(Node node){
-    // look at main
+    // no child queue, look at main
     Queue<Node> mq = new ArrayDeque<>(); //mq = main queue
     mq.add(node);
-    mq.add(new Node(-1));
+    mq.add(new Node(-1)); //marker node
     
     while(mq.size() > 0){
         node = mq.remove();
