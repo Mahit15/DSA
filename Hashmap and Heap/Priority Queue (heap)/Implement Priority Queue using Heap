@@ -9,7 +9,7 @@ public class Main {
     //left child index = 2 * parent index + 1 
     //right child index = 2 * parent index + 2
     //parent index = (child index - 1) / 2
-    //using heap order property (parent priority > child priority)
+    //using heap order property (parent priority > child priority or parent value < child value by default)
     //using complete binary tree property (all levels are full or the last level is filled from left and h-1 levels are full)
 
     public PriorityQueue() {
