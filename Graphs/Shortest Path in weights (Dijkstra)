@@ -35,7 +35,7 @@ public class Main {
 
       int src = Integer.parseInt(br.readLine());
       // write your code here
-      PriorityQueue<Pair> pq = new PriorityQueue<>();
+      PriorityQueue<Pair> pq = new PriorityQueue<>(); //dijkstra algorithm uses a priority queue instead of queue like BFS
       pq.add(new Pair(src, src + "", 0));
       boolean[] visited = new boolean[vtces];
       while(pq.size() > 0){
