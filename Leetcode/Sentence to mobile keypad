@@ -1,0 +1,28 @@
+import java.util.*;
+ import java.io.*;
+ 
+ public class Main {
+ 
+ 	 public static void Keypad(String s) {
+ 
+ 	 	 // write your code here
+ 	 	 String[] keys = {"2", "22", "222", "3", "33", "333", "4", "44", "444", "5", "55", "555", "6", "66", "666", "7", "77", "777", "7777", "8", "88", "888", "9", "99", "999", "9999"};
+ 	 	 String ans = "";
+ 	 	 int n = s.length();
+ 	 	 for(int i = 0; i < n; i++){
+ 	 	     if(s.charAt(i) == ' '){
+ 	 	         ans+= '0';
+ 	 	     } else {
+ 	 	         int j = s.charAt(i) - 'A';
+ 	 	         ans += keys[j];
+ 	 	     }
+ 	 	 }
+ 	 	 System.out.println(ans);
+ 	 }
+ 
+ 	 public static void main(String[] args) {
+ 	 	 Scanner in = new Scanner(System.in);
+ 	 	 String s = in.nextLine();
+ 	 	 Keypad(s);
+ 	 }
+ }
