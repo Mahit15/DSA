@@ -1,0 +1,41 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Main {
+  public static void main(String[] args) throws IOException {
+    Scanner scn = new Scanner(System.in);
+    int n = scn.nextInt();
+    int[] num = new int[n];
+    for (int i = 0; i < n; i++) {
+      num[i] = scn.nextInt();
+    }
+    int k = scn.nextInt();
+    solve(num, k);
+  }
+
+  public static void solve(int[] arr, int k) {
+    int result = binarySearch(arr, 0, arr.length, k);
+    System.out.println(result);
+  }
+  public static int binarySearch(int[] arr, int low, int high, int k){
+      if(high >= low){
+          int mid = (low + high) / 2;
+          if(arr[mid] == k){
+              return mid;
+          }
+          if(mid > low && arr[mid - 1] == k){
+              return mid - 1;
+          }
+          if(mid < high && arr[mid + 1] == k){
+              return mid + 1;
+          }
+          if(arr[mid] > k){
+              return binarySearch(arr, low, mid - 2, k);
+          }
+          return binarySearch(arr, mid + 2, high, k);
+      }
+      return -1;
+      
+  }
+}
