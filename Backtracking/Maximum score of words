@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.*;
+
+public class Main
+{
+    
+    public static int solution(String[] words, int[] farr, int[] score, int idx){
+        if(idx == words.length){
+            return 0;
+        }
+        
+        int sno = 0 + solution(words, farr, score, idx + 1); //word not included, this word's score + score from rest of the words
+        //word to include
+        int sw = 0; //score of word 
+        String word = words[idx];
+        boolean flag = true; //true if yes call can be made
+        for(int i = 0; i < word.length(); i++){
+            char ch = word.charAt(i);
+            if(farr[ch - 'a'] == 0){
+                flag = false;
+            }
+            farr[ch - 'a']--;
+            sw += score[ch - 'a'];
+        }
+        int syes = 0; //score yes
+        if(flag){
+            syes = sw + solution(words, farr, score, idx + 1); //this word's score + score of rest of the words
+        }
+        for(int i = 0; i < word.length(); i++){
+            char ch = word.charAt(i);
+            farr[ch - 'a']++; //restoring frequency array to original on each call 
+        }
+        return Math.max(sno, syes);
+    }
+	public static void main(String[] args) {
+		Scanner scn = new Scanner(System.in);
+		int nofWords = scn.nextInt();
+		String[] words = new String[nofWords];
+		for(int i = 0; i < words.length; i++){
+		    words[i] = scn.next();
+		}
+		int noofLetters = scn.nextInt();
+		char[] letters = new char[noofLetters];
+		for(int i = 0; i < letters.length; i++){
+		    letters[i] = scn.next().charAt(0);
+		}
+		int[] score = new int[26];
+		for(int i = 0; i < score.length; i++){
+		    score[i] = scn.nextInt();
+		}
+		if(words == null || words.length == 0 || letters == null || letters.length == 0 || score == null 
+		|| score.length == 0){
+		    System.out.println(0);
+		    return;
+		}
+		int[] farr = new int[score.length]; //frequency array 
+		for(char ch : letters){
+		    farr[ch - 'a']++;
+		}
+		System.out.println(solution(words, farr, score, 0));
+	}
+}
