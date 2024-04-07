@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        int[][] board = new int[n][n];
+        printNQueens(board, "", 0);
+    }
+    public static void printNQueens(int[][] board, String asf, int row){
+
+        if(row == board.length){
+            System.out.println(asf);
+            return;
+        }
+
+        for(int col = 0; col < board.length; col++){
+            if(isSafe(board, row, col)){
+                board[row][col] = 1;
+                printNQueens(board, asf + row + "-" + col + ", ", row + 1);
+                board[row][col] = 0;
+            }
+        }
+    }
+    
+    public static boolean isSafe(int[][] board, int row, int col){
+        //up
+        for(int i = row - 1, j = col; i >= 0; i--){
+            if(board[i][j] == 1) {
+                return false;
+            }
+        }
+        // up left diagonal
+        for(int i = row - 1, j = col - 1; i >=0 && j >=0; i--, j--){
+            if(board[i][j] == 1) {
+                return false;
+            }
+        }
+        //up right diagonal
+        for(int i = row - 1, j = col + 1; i >= 0 && j < board.length; i--, j++){
+            if(board[i][j] == 1) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
